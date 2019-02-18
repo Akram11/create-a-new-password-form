@@ -23,29 +23,38 @@ var submit = document.querySelector('#submit');
 /*
 You'll probably find this function useful...
  */
-submit.onclick = function () {
+submit.onclick = function() {
 
-  let firstPassword = firstPasswordInput.value;
-  let secondPassword = secondPasswordInput.value;
+    let firstPassword = firstPasswordInput.value;
+    let secondPassword = secondPasswordInput.value;
 
-  function checkRequirements() {
+    function checkRequirements() {
 
-    if (firstPassword.legth > 100) {
-      console.log("pass is longer than 100");
-    }else if (firstPassword.length < 16) {
-      console.log("pass is shorter than 16");
+      if (firstPassword.legth > 100) {
+        console.log("pass is longer than 100");
+      } else if (firstPassword.length < 16) {
+        console.log("pass is shorter than 16");
+      }
+
+      if (!firstPassword.match(/[\!\@\#\$\%\^\&\*]/g)) {
+        console.log("a symbol is required");
+      }
+
+      if (!firstPassword.match(/\d/g)) {
+        alert("your pass must have a number");
+      }
+
+      if (!firstPassword.match(/[a-z]/g)) {
+        alert("your pass must have a lowercase letter");
+      }
+
+      if (!firstPassword.match(/[A-A]/g)) {
+            alert("your pass must have an uppercase letter");
+        }
+
+
     }
 
-    if (!firstPassword.match(/[\!\@\#\$\%\^\&\*]/g)) {
-      console.log("a symbol is required");
-    }
+        checkRequirements();
 
-    if (!firstPassword.match(/\d/g)) {
-    alert("your pass must have a number");
-    }
-
-  }
-
-checkRequirements();
-
-};
+      };
