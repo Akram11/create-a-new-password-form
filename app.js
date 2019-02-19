@@ -75,7 +75,6 @@ submit.onclick = function() {
   let firstIssues = firstPassIssueTracker.retrieve();
   let secondIssues = secondPassIssueTracker.retrieve();
 
-
 firstPasswordInput.setCustomValidity(firstIssues);
 secondPasswordInput.setCustomValidity(secondIssues);
 
