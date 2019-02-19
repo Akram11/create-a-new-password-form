@@ -79,7 +79,7 @@ firstPasswordInput.setCustomValidity(firstIssues);
 secondPasswordInput.setCustomValidity(secondIssues);
 
 if(firstIssues.length + secondIssues.length === 0){
-  alert("new passwords has been saved!");
+  alert("new password has been saved!");
 }
 
 };
