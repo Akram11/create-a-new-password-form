@@ -25,6 +25,37 @@ let issues = [];
 /*
 You'll probably find this function useful...
  */
+
+function IssueTracker(){
+this.issues = [];
+}
+IssueTracker.prototype = {
+  add: function(issue){
+    this.issues.push(issue);
+  },
+
+  retrieve: function(){
+    let message = "";
+
+    switch (issues.length) {
+      case 0:
+        break;
+      case 1:
+      message = "Please fix the following issue:\n" + this.issues[0];
+      break;
+      default:
+      message = "Please fix the following issues:\n" + this.issues.join('\n');
+      break;
+    }
+    return message;
+  }
+};
+
+let firtPassIssueTracker = new IssueTracker();
+let secondPassIssueTracker = new IssueTracker();
+
+
+
 submit.onclick = function() {
 
   let firstPassword = firstPasswordInput.value;
@@ -33,29 +64,27 @@ submit.onclick = function() {
   function checkRequirements() {
 
     if (firstPassword.legth > 100) {
-      issues.push("pass is longer than 100");
+      firtPassIssueTracker.add("pass is longer than 100");
     } else if (firstPassword.length < 16) {
-      issues.push("pass is shorter than 16");
+      firtPassIssueTracker.add("pass is shorter than 16");
     }
 
     if (!firstPassword.match(/[\!\@\#\$\%\^\&\*]/g)) {
-      issues.push("a symbol is required");
+      firtPassIssueTracker.add("a symbol is required");
     }
 
     if (!firstPassword.match(/\d/g)) {
-      issues.push("your pass must have a number");
+      firtPassIssueTracker.add("your pass must have a number");
     }
 
     if (!firstPassword.match(/[a-z]/g)) {
-      issues.push("your pass must have a lowercase letter");
+      firtPassIssueTracker.add("your pass must have a lowercase letter");
     }
 
     if (!firstPassword.match(/[A-A]/g)) {
-      issues.push("your pass must have an uppercase letter");
+      firtPassIssueTracker.add("your pass must have an uppercase letter");
     }
-
-
-  }
+  };
 
 
 function showIssues(issuesCopy){
