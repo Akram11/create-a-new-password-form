@@ -19,42 +19,55 @@ Grabbing a few inputs to help you get started...
 var firstPasswordInput = document.querySelector('#first');
 var secondPasswordInput = document.querySelector('#second');
 var submit = document.querySelector('#submit');
+let notify = document.querySelector('#notify');
+let issues = [];
 
 /*
 You'll probably find this function useful...
  */
 submit.onclick = function() {
 
-    let firstPassword = firstPasswordInput.value;
-    let secondPassword = secondPasswordInput.value;
+  let firstPassword = firstPasswordInput.value;
+  let secondPassword = secondPasswordInput.value;
 
-    function checkRequirements() {
+  function checkRequirements() {
 
-      if (firstPassword.legth > 100) {
-        console.log("pass is longer than 100");
-      } else if (firstPassword.length < 16) {
-        console.log("pass is shorter than 16");
-      }
-
-      if (!firstPassword.match(/[\!\@\#\$\%\^\&\*]/g)) {
-        console.log("a symbol is required");
-      }
-
-      if (!firstPassword.match(/\d/g)) {
-        alert("your pass must have a number");
-      }
-
-      if (!firstPassword.match(/[a-z]/g)) {
-        alert("your pass must have a lowercase letter");
-      }
-
-      if (!firstPassword.match(/[A-A]/g)) {
-            alert("your pass must have an uppercase letter");
-        }
-
-
+    if (firstPassword.legth > 100) {
+      issues.push("pass is longer than 100");
+    } else if (firstPassword.length < 16) {
+      issues.push("pass is shorter than 16");
     }
 
-        checkRequirements();
+    if (!firstPassword.match(/[\!\@\#\$\%\^\&\*]/g)) {
+      issues.push("a symbol is required");
+    }
 
-      };
+    if (!firstPassword.match(/\d/g)) {
+      issues.push("your pass must have a number");
+    }
+
+    if (!firstPassword.match(/[a-z]/g)) {
+      issues.push("your pass must have a lowercase letter");
+    }
+
+    if (!firstPassword.match(/[A-A]/g)) {
+      issues.push("your pass must have an uppercase letter");
+    }
+
+
+  }
+
+
+function showIssues(issuesCopy){
+
+  for(issue in issuesCopy){
+    notify.innerHTML += issues[issue];
+    console.log(issues[issue]);
+  }
+}
+checkRequirements();
+let issuesCopy = issues;
+
+showIssues(issuesCopy);
+
+};
